@@ -9,8 +9,11 @@ interface DynamicIconProps extends LucideProps {
   name: string
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type IconMap = Record<string, any>
+
 export default function DynamicIcon({ name, ...rest }: DynamicIconProps) {
-  const Icon = (icons as unknown as Record<string, React.ComponentType<LucideProps>>)[name]
+  const Icon = (icons as IconMap)[name]
 
   if (!Icon) {
     console.warn(`DynamicIcon: icon "${name}" not found, using fallback`)
