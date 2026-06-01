@@ -10,9 +10,8 @@ interface DynamicIconProps extends LucideProps {
 }
 
 export default function DynamicIcon({ name, ...rest }: DynamicIconProps) {
-  const Icon = (icons as Record<string, React.ComponentType<LucideProps>>)[name]
+  const Icon = (icons as unknown as Record<string, React.ComponentType<LucideProps>>)[name]
 
-  // fallback if someone puts a typo in the db
   if (!Icon) {
     console.warn(`DynamicIcon: icon "${name}" not found, using fallback`)
     return <icons.BookOpen {...rest} />
